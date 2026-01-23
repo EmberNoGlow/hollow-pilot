@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm8nvp4xn7tvh"]
+
+[ext_resource type="Script" uid="uid://c22bslsd3i1kd" path="res://enemy.gd" id="1_tt7e2"]
+[ext_resource type="Texture2D" uid="uid://6o6u2jqyt4lk" path="res://icon.svg" id="2_s7bn3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2hac7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7bn3"]
+radius = 100.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_tt7e2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_2hac7")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.14062499, 0.21874999)
+texture = ExtResource("2_s7bn3")
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+shape = SubResource("CircleShape2D_s7bn3")
+
+[node name="AttackTimer" type="Timer" parent="."]

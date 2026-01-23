@@ -1,0 +1,19 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://6nvfdv5v0ddf"]
+
+[ext_resource type="Texture2D" uid="uid://k4e6tm1axug8" path="res://assets/StylizedunglePlant_07_0.png" id="1_my4td"]
+[ext_resource type="Texture2D" uid="uid://6k5p7bxd8oeg" path="res://assets/StylizedJunglePlant_06_0.png" id="2_7y4iw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7y4iw"]
+texture = ExtResource("1_my4td")
+texture_region_size = Vector2i(80, 80)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sdonr"]
+texture = ExtResource("2_7y4iw")
+texture_region_size = Vector2i(80, 80)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(80, 80)
+sources/2 = SubResource("TileSetAtlasSource_7y4iw")
+sources/3 = SubResource("TileSetAtlasSource_sdonr")

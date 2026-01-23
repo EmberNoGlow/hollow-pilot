@@ -1,0 +1,17 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cvqhggijg3fom"]
+
+[ext_resource type="Texture2D" uid="uid://buhhbnbf0tp63" path="res://assets/iso_pines.png" id="1_cxw3l"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gos03"]
+texture = ExtResource("1_cxw3l")
+texture_region_size = Vector2i(96, 256)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[resource]
+tile_size = Vector2i(96, 256)
+sources/3 = SubResource("TileSetAtlasSource_gos03")

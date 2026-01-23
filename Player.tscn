@@ -1,0 +1,201 @@
+[gd_scene load_steps=17 format=3 uid="uid://d13bvoatdjo02"]
+
+[ext_resource type="Script" uid="uid://bw0j2ydi7pq1t" path="res://player.gd" id="1_g1dgw"]
+[ext_resource type="Texture2D" uid="uid://dcm62mx7nv314" path="res://assets/Copilot.png" id="2_kpjcp"]
+[ext_resource type="Texture2D" uid="uid://hw47yb3ajboj" path="res://assets/Circle.tres" id="3_kne1u"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0rwas"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
+size = Vector2(73, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kpjcp"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.101960786, 0.22745098, 0.101960786, 0.3019608)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.22745098, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kne1u"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.8039216, 0.7137255, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.047058824, 0.8, 0.58431375)
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e80uo"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.40392157, 0.22745098, 0.30588236, 0.3019608)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.75686276, 0.78431374, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxr5p"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.627451, 0.58431375, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="Curve" id="Curve_kne1u"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.24872233, 1), 0.0, 0.0, 0, 0, Vector2(0.80238503, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_e80uo"]
+width = 32
+curve = SubResource("Curve_kne1u")
+
+[sub_resource type="Curve" id="Curve_cxr5p"]
+_data = [Vector2(0, 0.0577662), 0.0, -3.188011, 0, 0, Vector2(0.35945487, 1), -1.2297621, -1.2297621, 0, 0, Vector2(0.58943784, 1), 0.0, 0.0, 0, 0, Vector2(0.8449744, 0.64826685), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_e80uo"]
+_limits = [0.0, 0.4557131, 0.0, 1.0]
+_data = [Vector2(0, 0.0577662), 0.0, -3.188011, 0, 0, Vector2(0.3253833, 0.4557131), -1.2297621, -1.2297621, 0, 0, Vector2(0.5979557, 0.3273434), 0.0, 0.0, 0, 0, Vector2(0.8449744, 0.26315856), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_tdg3f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_dtqjt"]
+curve_x = SubResource("Curve_cxr5p")
+curve_y = SubResource("Curve_e80uo")
+curve_z = SubResource("Curve_tdg3f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kne1u"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 10, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(98, 0, 0)
+radial_accel_min = 19.999998
+radial_accel_max = 39.999996
+scale_min = 0.099999994
+scale_max = 0.29999998
+scale_curve = SubResource("CurveXYZTexture_dtqjt")
+color = Color(1.3294628, 1.1232218, 0.99841875, 1)
+alpha_curve = SubResource("CurveTexture_e80uo")
+
+[node name="Root" type="CharacterBody2D"]
+script = ExtResource("1_g1dgw")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0rwas")
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(45.5, 0)
+
+[node name="AttackCollision" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("RectangleShape2D_kpjcp")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(2.3841858e-07, -5.999999)
+scale = Vector2(0.04577637, 0.04577637)
+color = Color(0.3647059, 0, 0.30588236, 1)
+antialiased = true
+polygon = PackedVector2Array(-87.38134, 458.75195, -65.536, 283.98932, -21.845339, 152.91731, -5.2083333e-06, 152.91731, -43.69067, 305.83466, -65.536, 458.75195)
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(2.3841858e-07, -5.999999)
+rotation = 3.1415927
+scale = Vector2(0.04577637, -0.04577637)
+color = Color(0.3647059, 0, 0.30588236, 1)
+antialiased = true
+polygon = PackedVector2Array(-87.38134, 458.75195, -65.536, 283.98932, -21.845339, 152.91731, -5.2083333e-06, 152.91731, -43.69067, 305.83466, -65.536, 458.75195)
+
+[node name="Copilot" type="Sprite2D" parent="."]
+position = Vector2(2.3841858e-07, -5.999999)
+scale = Vector2(0.04577637, 0.04577637)
+texture = ExtResource("2_kpjcp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Health" type="ProgressBar" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 50.0
+offset_right = 544.0
+offset_bottom = 73.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kpjcp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kne1u")
+show_percentage = false
+
+[node name="Soul" type="ProgressBar" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 16.0
+offset_right = 83.0
+offset_bottom = 93.0
+theme_override_styles/background = SubResource("StyleBoxFlat_e80uo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cxr5p")
+value = 40.0
+fill_mode = 3
+show_percentage = false
+
+[node name="AttackParticles" type="GPUParticles2D" parent="."]
+emitting = false
+texture = ExtResource("3_kne1u")
+one_shot = true
+speed_scale = 2.2
+explosiveness = 0.8
+randomness = 0.35
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_kne1u")
