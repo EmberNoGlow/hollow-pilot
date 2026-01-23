@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d13bvoatdjo02"]
+[gd_scene load_steps=21 format=3 uid="uid://d13bvoatdjo02"]
 
 [ext_resource type="Script" uid="uid://bw0j2ydi7pq1t" path="res://player.gd" id="1_g1dgw"]
 [ext_resource type="Texture2D" uid="uid://dcm62mx7nv314" path="res://assets/Copilot.png" id="2_kpjcp"]
@@ -79,6 +79,94 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 corner_detail = 6
 
+[sub_resource type="Animation" id="Animation_kne1u"]
+resource_name = "Start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/AnimationPlayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/AnimationPlayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_e80uo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/AnimationPlayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/AnimationPlayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_cxr5p"]
+resource_name = "End"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/AnimationPlayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/AnimationPlayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cxr5p"]
+_data = {
+&"End": SubResource("Animation_cxr5p"),
+&"RESET": SubResource("Animation_e80uo"),
+&"Start": SubResource("Animation_kne1u")
+}
+
 [sub_resource type="Curve" id="Curve_kne1u"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.24872233, 1), 0.0, 0.0, 0, 0, Vector2(0.80238503, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
@@ -119,7 +207,7 @@ scale_curve = SubResource("CurveXYZTexture_dtqjt")
 color = Color(1.3294628, 1.1232218, 0.99841875, 1)
 alpha_curve = SubResource("CurveTexture_e80uo")
 
-[node name="Root" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g1dgw")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
@@ -189,6 +277,21 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_cxr5p")
 value = 40.0
 fill_mode = 3
 show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_cxr5p")
+}
+autoplay = "Start"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/AnimationPlayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="AttackParticles" type="GPUParticles2D" parent="."]
 emitting = false

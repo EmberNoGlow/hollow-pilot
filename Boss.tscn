@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://botgsifaulxu7"]
+
+[ext_resource type="Script" uid="uid://dtg7f3s1oqmrb" path="res://boss.gd" id="1_4jvlg"]
+[ext_resource type="Texture2D" uid="uid://dfswjqrh7q68x" path="res://assets/Reddit.png" id="2_4jvlg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2hac7"]
+radius = 20.0
+height = 46.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7bn3"]
+radius = 262.00192
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_4jvlg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_2hac7")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(0.10546875, 0.16015624)
+texture = ExtResource("2_4jvlg")
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+shape = SubResource("CircleShape2D_s7bn3")
+
+[node name="AttackTimer" type="Timer" parent="."]

@@ -5,7 +5,7 @@ const GRAVITY = 1400
 @export var jump_speed = 450
 @export var dash_speed = 700
 @export var dash_time = 0.12
-@export var max_health = 5
+@export var max_health = 15
 @export var max_souls = 6
 @export var heal_cost = 1
 @export var heal_amount = 1
@@ -18,7 +18,7 @@ var dashing = false
 var dash_timer = 0.0
 
 var souls = 0
-var health = max_health
+var health = 0
 
 var can_attack = true
 var healing = false
@@ -29,11 +29,14 @@ var current_direction
 @onready var health_bar: ProgressBar = $CanvasLayer/Control/Health
 @onready var soul_bar: ProgressBar = $CanvasLayer/Control/Soul
 @onready var attack_particles: GPUParticles2D = $AttackParticles
+@onready var animation_player: AnimationPlayer = $CanvasLayer/Control/AnimationPlayer
 
 
 func _ready():
 	health_bar.max_value = max_health
 	soul_bar.max_value = max_souls
+	health = max_health
+	souls = clamp(souls, 0, max_souls)
 	# connect timer signal if present
 	if has_node("AttackTimer"):
 		$AttackTimer.timeout.connect(_on_AttackTimer_timeout)
@@ -83,13 +86,13 @@ func _physics_process(delta):
 			dashing = false
 	
 	current_direction = sign(velocity.x)
-	if current_direction != 0:
-		$AttackArea.position.x = abs($AttackArea.position.x) * current_direction\
-			if velocity.x < 0 else\
-			abs($AttackArea.position.x)
-		attack_particles.process_material.gravity = abs(attack_particles.process_material.gravity) * current_direction\
-			if velocity.x < 0 else\
-			abs(attack_particles.process_material.gravity)
+	var dir_sign = current_direction
+	if dir_sign != 0:
+		current_direction = dir_sign
+		if has_node("AttackArea"):
+			$AttackArea.position.x = -abs($AttackArea.position.x) if current_direction < 0 else abs($AttackArea.position.x)
+		if attack_particles:
+			attack_particles.scale.x = -abs(attack_particles.scale.x) if current_direction < 0 else abs(attack_particles.scale.x)
 
 	move_and_slide()
 
@@ -118,6 +121,8 @@ func attack():
 
 func _on_AttackTimer_timeout():
 	can_attack = true
+	if attack_particles:
+		attack_particles.emitting = false
 
 func start_heal():
 	if souls < heal_cost: return
@@ -137,4 +142,6 @@ func take_damage(amount):
 		die()
 
 func die():
-	get_tree().quit()
+	animation_player.play("End")
+	await get_tree().create_timer(1.125).timeout
+	get_tree().reload_current_scene()
