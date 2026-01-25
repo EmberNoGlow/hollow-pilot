@@ -1,8 +1,8 @@
 # 💀 Hollow Pilot: The Final Breath 🤖
 
-**Genre:** Metroidvania (with elements of existential dread)
-**Engine:** Godot Engine
-**Project Status:** **ABANDONED**. (Or, as I prefer to call it, "Frozen in cryosleep until better days.")
+- **Genre:** Metroidvania (with elements of existential dread)
+-**Engine:** Godot Engine
+- **Project Status:** **ABANDONED**. (Or, as I prefer to call it, "Frozen in cryosleep until better days.")
 
 ![](Preview.png)
 
