@@ -5,7 +5,7 @@ const GRAVITY = 1400
 @export var jump_speed = 450
 @export var dash_speed = 700
 @export var dash_time = 0.12
-@export var max_health = 15
+@export var max_health = 5
 @export var max_souls = 6
 @export var heal_cost = 1
 @export var heal_amount = 1
@@ -92,7 +92,7 @@ func _physics_process(delta):
 		if has_node("AttackArea"):
 			$AttackArea.position.x = -abs($AttackArea.position.x) if current_direction < 0 else abs($AttackArea.position.x)
 		if attack_particles:
-			attack_particles.scale.x = -abs(attack_particles.scale.x) if current_direction < 0 else abs(attack_particles.scale.x)
+			attack_particles.process_material.gravity.x = -abs(attack_particles.process_material.gravity.x) if current_direction < 0 else abs(attack_particles.process_material.gravity.x)
 
 	move_and_slide()
 
@@ -114,6 +114,8 @@ func attack():
 		$AttackTimer.start(attack_cooldown)
 	if has_node("AttackArea"):
 		for body in $AttackArea.get_overlapping_bodies():
+			if body == self:
+				continue
 			if body.has_method("take_damage"):
 				body.take_damage(attack_damage)
 				souls += 1
@@ -145,3 +147,9 @@ func die():
 	animation_player.play("End")
 	await get_tree().create_timer(1.125).timeout
 	get_tree().reload_current_scene()
+
+
+func TheEnd():
+	animation_player.play("TheEnd")
+	await get_tree().create_timer(5.0).timeout
+	get_tree().quit()

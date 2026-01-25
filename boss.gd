@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const GRAVITY = 1400
-@export var max_health = 30
+@export var max_health = 10
 @export var speed = 100
 @export var lunge_speed = 600
 @export var lunge_duration = 0.35

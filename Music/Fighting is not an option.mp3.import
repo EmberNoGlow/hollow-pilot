@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dxpnxudvv4hpw"
+path="res://.godot/imported/Fighting is not an option.mp3-312583341e5f7266f5f1dff469514172.mp3str"
+
+[deps]
+
+source_file="res://Music/Fighting is not an option.mp3"
+dest_files=["res://.godot/imported/Fighting is not an option.mp3-312583341e5f7266f5f1dff469514172.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

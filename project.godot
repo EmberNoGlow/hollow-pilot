@@ -13,7 +13,11 @@ config_version=5
 config/name="Hollow Pilot"
 run/main_scene="uid://q5byijer08eh"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dcm62mx7nv314"
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 
