@@ -26,3 +26,6 @@ func _on_body_entered(body):
 	if body is not CharacterBody2D:
 		return
 	body.TheEnd()
+	await get_tree().create_timer(5.0).timeout
+	get_tree().change_scene_to_file("res://Level2.tscn")
+	

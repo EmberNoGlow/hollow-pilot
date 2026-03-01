@@ -14,6 +14,8 @@ const GRAVITY = 1400
 @export var attack_damage = 1
 
 var can_double_jump = true
+var can_damage = true
+var can_damage_timer = 0.0
 var dashing = false
 var dash_timer = 0.0
 
@@ -52,6 +54,15 @@ func _physics_process(delta):
 			heal_timer = 0.0
 		return
 		
+	if not can_damage:
+		can_damage_timer += delta
+		if can_damage_timer >= 1.2:
+			can_damage = true
+			can_damage_timer = 0.0
+	
+		$Copilot.modulate = Color(1.0,0.0,0.0,1.0)
+	else:
+		$Copilot.modulate = Color(1.0,1.0,1.0,1.0)
 	
 	health_bar.value = lerp(health_bar.value, float(health), delta*10.0)
 	soul_bar.value = lerp(soul_bar.value, float(souls), delta*10.0)
@@ -139,7 +150,9 @@ func add_souls(amount):
 	souls += amount
 
 func take_damage(amount):
-	health -= amount
+	if can_damage:
+		health -= amount
+		can_damage = false
 	if health <= 0:
 		die()
 
@@ -151,5 +164,3 @@ func die():
 
 func TheEnd():
 	animation_player.play("TheEnd")
-	await get_tree().create_timer(5.0).timeout
-	get_tree().quit()

@@ -15,6 +15,12 @@ run/main_scene="uid://q5byijer08eh"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://dcm62mx7nv314"
 
+[editor]
+
+movie_writer/video_quality=1.0
+movie_writer/movie_file="D:/GodotProjects/hollow-pilot/Demo.ogv"
+movie_writer/fps=30
+
 [gui]
 
 theme/default_font_multichannel_signed_distance_field=true

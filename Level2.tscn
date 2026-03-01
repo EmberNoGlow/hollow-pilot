@@ -1,0 +1,190 @@
+[gd_scene load_steps=16 format=4 uid="uid://cyu44re0e2ruy"]
+
+[ext_resource type="Shader" uid="uid://vo0ju0xulxlb" path="res://Shaders/Silk.gdshader" id="1_8mrap"]
+[ext_resource type="TileSet" uid="uid://6nvfdv5v0ddf" path="res://assets/GrassTileSet.tres" id="2_q04gf"]
+[ext_resource type="TileSet" uid="uid://0f34kgp8r5kt" path="res://assets/TileSet.tres" id="3_s8dg4"]
+[ext_resource type="Texture2D" uid="uid://cv2f04i2hg6j0" path="res://assets/smoke1.png" id="4_psxy2"]
+[ext_resource type="PackedScene" uid="uid://d13bvoatdjo02" path="res://Player.tscn" id="5_psxy2"]
+[ext_resource type="Script" uid="uid://cu4i306sk3b5y" path="res://abyss.gd" id="6_wwdpc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q04gf"]
+shader = ExtResource("1_8mrap")
+shader_parameter/uv_size = 15.9
+shader_parameter/base_speed = 0.435
+shader_parameter/modulate0 = Color(0, 0.22091639, 0.5271128, 1)
+shader_parameter/modulate1 = Color(0.5563933, 0.5684909, 0.8001019, 1)
+
+[sub_resource type="Curve" id="Curve_psxy2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.17206134, 1), 0.0, 0.0, 0, 0, Vector2(0.6831346, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_wwdpc"]
+width = 32
+curve = SubResource("Curve_psxy2")
+
+[sub_resource type="Gradient" id="Gradient_6faey"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.06185567, 0.4742268, 0.7525773, 1)
+colors = PackedColorArray(0, 0.105882354, 0.25490198, 1, 0.2374612, 0.29337206, 0.48899934, 1, 0.21960784, 0.16470589, 0.39607844, 1, 0.25043267, 0.25370917, 0.3887676, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nc7oo"]
+gradient = SubResource("Gradient_6faey")
+width = 64
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6x3wt"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+gravity = Vector3(0, -0.1, 0)
+scale_min = 0.45
+scale_max = 0.45
+color_initial_ramp = SubResource("GradientTexture1D_nc7oo")
+alpha_curve = SubResource("CurveTexture_wwdpc")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6faey"]
+size = Vector2(2922, 20)
+
+[sub_resource type="Gradient" id="Gradient_wwdpc"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.45185184, 0.67407405)
+colors = PackedColorArray(1, 1, 1, 1, 0.63, 0.6608333, 1, 0.54901963, 0.27450982, 0.27450982, 0.6784314, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6faey"]
+gradient = SubResource("Gradient_wwdpc")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Level2" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_q04gf")
+offset_left = -1148.0
+offset_top = -938.0
+offset_right = 1666.0
+offset_bottom = 1876.0
+mouse_filter = 2
+
+[node name="Grass" type="TileMapLayer" parent="."]
+self_modulate = Color(0, 0.7643393, 1.1329656, 1)
+texture_filter = 3
+position = Vector2(0, 9.345)
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAACAAMAAgAAAAAAAAADAAMAAwAAAAAAAAAEAAMAAgAAAAAAAAAFAAMAAgAAAAAAAAAHAAMAAwAAAAAAAAAIAAMAAgAAAAAAAAAJAAMAAgAAAAAAAAALAAMAAwAAAAAAAAAMAAMAAgAAAAAAAAANAAMAAgAAAAAAAAAJAP//AgAAAAAAAAAKAP//AgAAAAAAAAALAP//AgAAAAAAAAA=")
+tile_set = ExtResource("2_q04gf")
+metadata/_edit_lock_ = true
+
+[node name="Grass2" type="TileMapLayer" parent="."]
+self_modulate = Color(0, 0.7065584, 1.1329656, 1)
+texture_filter = 3
+position = Vector2(13.785, 14.615)
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAACAAMAAgAAAAAAAAAEAAMAAgAAAAAAAAAIAAMAAgAAAAAAAAAJAAMAAgAAAAAAAAAMAAMAAgAAAAAAAAANAAMAAgAAAAAAAAAJAP//AgAAAAAAAAADAAMAAgAAAAAAAAAHAAMAAgAAAAAAAAALAAMAAgAAAAAAAAAKAP//AwAAAAAAAAA=")
+tile_set = ExtResource("2_q04gf")
+metadata/_edit_lock_ = true
+
+[node name="Ruins" type="TileMapLayer" parent="."]
+self_modulate = Color(0.3282248, 0.40584272, 0.69008625, 1)
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+tile_map_data = PackedByteArray("AAADAAcAAQAEAAAAAAAEAAcAAQAGAAAAAAAFAAcAAQAHAAAAAAAGAAcAAQAFAAAAAAAHAAcAAQAGAAAAAAAIAAcAAQAHAAAAAAAJAAcAAQAFAAAAAAAKAAcAAQAGAAAAAAALAAcAAQAHAAAAAAAMAAcAAQAFAAAAAAANAAcAAQAGAAAAAAAOAAcAAQAHAAAAAAAPAAcAAQAFAAAAAAAQAAcAAQAGAAAAAAARAAcAAQAHAAAAAAASAAcAAQAFAAAAAAATAAcAAQAGAAAAAAAUAAcAAQAHAAAAAAAVAAcAAQAFAAAAAAAWAAcAAQAGAAAAAAAXAAcAAQAHAAAAAAAYAAcAAQAIAAAAAAAPAAAAAQAEAAAAAAAQAAAAAQAGAAAAAAARAAAAAQAHAAAAAAASAAAAAQAFAAAAAAATAAAAAQAGAAAAAAAUAAAAAQAIAAAAAAADAPz/AQAEAAAAAAAEAPz/AQAGAAAAAAAFAPz/AQAHAAAAAAAGAPz/AQAFAAAAAAAHAPz/AQAGAAAAAAAIAPz/AQAIAAAAAAAOAPf/AQAEAAAAAAAPAPf/AQAGAAAAAAAQAPf/AQAHAAAAAAARAPf/AQAFAAAAAAASAPf/AQAIAAAAAAATAAEAAQAHAAcAAAATAAIAAQAHAAgAAAATAAMAAQAHAAkAAAATAAQAAQAHAAoAAAATAAUAAQACAAcAAAATAAYAAQAFAAoAAAADAP3/AQAHAAcAAAADAP7/AQAHAAgAAAADAP//AQAHAAkAAAADAAAAAQAIAAcAAAAFAP7/AQAHAAcAAAAFAP//AQAHAAgAAAAFAAAAAQAHAAkAAAAFAAEAAQAIAAcAAAAAAP3/AQAHAAcAAAAAAP7/AQAHAAgAAAAAAP//AQAHAAkAAAAAAAAAAQAIAAcAAAASAPX/AQADAAkAAAASAPb/AQADAAoAAAASAAEAAQACAAcAAAASAAIAAQACAAgAAAAFAP3/AQAFAAcAAAASAAMAAQAIAAcAAAAJAAMAAQAIAAcAAAAJAAIAAQABAAcAAAAGAPD/AQAIAAcAAAAGAO7/AQAGAAcAAAAGAO//AQAGAAgAAAAGAO3/AQADAAkAAAAMAO3/AQADAAkAAAAMAO7/AQADAAoAAAAMAO//AQAIAAcAAAAOAO//AQAIAAcAAAAHAPP/AQAIAAoAAAAIAPP/AQAJAAoAAAAJAPP/AQAKAAoAAAALAPP/AQALAAoAAAAKAPP/AQAKAAoAAAAQAO3/AQAFAAkAAAAQAO7/AQAFAAoAAAAQAO//AQAIAAcAAAA=")
+tile_set = ExtResource("3_s8dg4")
+metadata/_edit_lock_ = true
+
+[node name="Clouds" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Clouds"]
+position = Vector2(145, 256)
+texture = ExtResource("4_psxy2")
+lifetime = 10.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_6x3wt")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Clouds"]
+position = Vector2(579, 256)
+texture = ExtResource("4_psxy2")
+lifetime = 10.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_6x3wt")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Clouds"]
+position = Vector2(81, -272)
+rotation = -1.3089969
+texture = ExtResource("4_psxy2")
+lifetime = 10.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_6x3wt")
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="Clouds"]
+position = Vector2(-87.000015, -221)
+rotation = -1.3089969
+texture = ExtResource("4_psxy2")
+lifetime = 10.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_6x3wt")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Clouds"]
+position = Vector2(382, -428)
+rotation = -2.0943952
+texture = ExtResource("4_psxy2")
+lifetime = 10.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_6x3wt")
+
+[node name="GPUParticles2D9" type="GPUParticles2D" parent="Clouds"]
+position = Vector2(178, -586)
+rotation = -1.3089969
+texture = ExtResource("4_psxy2")
+lifetime = 10.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_6x3wt")
+
+[node name="GPUParticles2D7" type="GPUParticles2D" parent="Clouds"]
+position = Vector2(662, -369.99994)
+rotation = 0.5235988
+texture = ExtResource("4_psxy2")
+lifetime = 10.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_6x3wt")
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="Clouds"]
+position = Vector2(579, -139)
+rotation = -3.6651917
+texture = ExtResource("4_psxy2")
+lifetime = 10.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_6x3wt")
+
+[node name="GPUParticles2D8" type="GPUParticles2D" parent="Clouds"]
+position = Vector2(772, -50.000015)
+rotation = -3.926991
+texture = ExtResource("4_psxy2")
+lifetime = 10.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_6x3wt")
+
+[node name="Player" parent="." instance=ExtResource("5_psxy2")]
+position = Vector2(307, 137)
+
+[node name="Abyss" type="Area2D" parent="."]
+position = Vector2(0, 500)
+script = ExtResource("6_wwdpc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Abyss"]
+position = Vector2(295, -244)
+shape = SubResource("RectangleShape2D_6faey")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(226.99998, -540)
+scale = Vector2(6.978875, 10.416834)
+skew = -0.23561946
+texture = SubResource("GradientTexture2D_6faey")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 180.0
+offset_top = -163.0
+offset_right = 366.0
+offset_bottom = -140.0
+text = "Bonus: Just pretty scene"
