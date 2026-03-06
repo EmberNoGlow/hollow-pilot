@@ -1,7 +1,7 @@
 # 💀 Hollow Pilot: The Final Breath 🤖
 
 - **Genre:** Metroidvania (with elements of existential dread)
--**Engine:** Godot Engine
+- **Engine:** Godot Engine
 - **Project Status:** **ABANDONED**. (Or, as I prefer to call it, "Frozen in cryosleep until better days.")
 
 ![](Preview.png)
@@ -47,6 +47,11 @@ This project became a battleground between my ambition and my technical skill, a
 **None.**
 
 If someone wants to take this code, fix the animations, sort out the scripts, add music, and maybe repaint everything in more pleasant colors—this is **your** project now. I am too tired.
+
+## Try it!
+- **[releases](https://github.com/EmberNoGlow/hollow-pilot/releases)**
+- **[itch.io](https://eng0.itch.io/hollow-pilot)**
+
 
 ## 💖 Acknowledgements
 
